@@ -1,0 +1,29 @@
+INPUT PROBLEMA:
+	-Stringa da riconoscere 'parola'
+	-Contunto della Board
+	-Posizione della prima lettera
+
+SOLUZIONE PARZIALE
+	-Una stringa, la parte della 'parola' che 
+	ho già riconosciuto
+	-Elenco delle posizioni delle lettere
+	
+SOLUZIONE TOTALE
+	-la parola riconosciuta per intero
+	-Elenco delle posizioni delle lettere
+	
+LIVELLO RICORSIONE
+	-Il numero di caratteri riconosciuti
+	
+CONDIZIONI DI TERMINAZIONE
+	-livello == lunghezza della parola da riconoscere
+	-se viene trovata 'parola', stoppo la ricorsione
+	
+AVVIO RICORSIONE
+	-livello = 1
+	-parto dalla posizione della prima lettera (se c'è)
+	
+STRUTTURE DATI
+	-Stringa (parziale)
+	-int (livello)
+	-List<Pos> (parziale, il percoso)
