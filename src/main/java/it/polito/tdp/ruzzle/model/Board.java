@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import it.polito.tdp.ruzzle.db.DizionarioDAO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -16,6 +17,7 @@ import javafx.beans.property.StringProperty;
 public class Board {
 	private List<Pos> positions;
 	private Map<Pos, StringProperty> cells;
+	DizionarioDAO dao = new DizionarioDAO();
 
 	private int size;
 
@@ -66,12 +68,26 @@ public class Board {
 	/**
 	 * Crea una nuova scacchiera generando tutte lettere casuali
 	 */
+	
 	public void reset() {
+		List<String> lista=dao.listParola();
+		int numeroParole=lista.size()-1;
 		for(Pos p: this.positions) {
-			
-			//TODO: migliorare l'assegnazione secondo la probabiltà di ogni lettetera di essere utilizzata nella lingua italiana
+			/*
 			int random = (int)(Math.random()*26) ;
 			String letter = Character.toString((char)('A'+random)) ;
+			
+			
+			OPPURE
+			Ho implementato un metodo poco preciso per avere delle lettere
+			che abbiano una probabilità maggiore di comparire in una parola,
+			è meglio del metodo casuale ma non è il meglio che si può avere 
+			*/
+			int indiceParola=(int)(Math.random()*numeroParole);
+			String parola= lista.get(indiceParola);
+			int lunghezzaParola= parola.length()-1;
+			int posCarattere=(int) Math.random()*lunghezzaParola;
+			String letter=parola.substring(posCarattere, posCarattere+1).toUpperCase();
 			
 			//grazie al "binding" fatto in FXMLController, la "set" modifica direttamente il testo del botone collegato alla posizione corrente
 			this.cells.get(p).set(letter); 
